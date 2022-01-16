@@ -26,10 +26,12 @@ const Navbar = () => {
 
       if(decodedToken.exp * 1000 < new Date().getTime()) logout()
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+   
+    
     setUser(JSON.parse(localStorage.getItem( 'profile')))
-  }, [location, logout])
-  console.log(user)  
+     // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [location, logout, user?.token])
+  // console.log(user)  
   return (
     <div>
       <AppBar className={classes.appBar} position="static" color="inherit">
