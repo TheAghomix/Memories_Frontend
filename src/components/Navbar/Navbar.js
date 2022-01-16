@@ -28,7 +28,7 @@ const Navbar = () => {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
     setUser(JSON.parse(localStorage.getItem( 'profile')))
-  }, [location, user.token, logout])
+  }, [location, logout])
   console.log(user)  
   return (
     <div>
