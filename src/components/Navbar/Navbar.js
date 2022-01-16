@@ -27,7 +27,7 @@ const Navbar = () => {
     }
 
     setUser(JSON.parse(localStorage.getItem( 'profile')))
-  }, [location])
+  }, [location, user?.token, logout])
   console.log(user)  
   return (
     <div>
