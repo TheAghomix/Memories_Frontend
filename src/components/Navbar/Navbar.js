@@ -4,6 +4,7 @@ import useStyles from "./styles";
 import memories from "../../images/memories.png";
 import {Link, useNavigate, useLocation } from 'react-router-dom'
 import { useDispatch } from "react-redux";
+import { useCallback } from 'react'
 import decode from 'jwt-decode'
 
 const Navbar = () => {
@@ -12,11 +13,11 @@ const Navbar = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const location = useLocation(); 
-  const logout = () => {
+  const logout = useCallback(() => {
     dispatch({type : 'LOGOUT'});
     navigate('/');
     setUser(null)
-  }
+  }, [dispatch, navigate])
   useEffect(() => {
     const token = user?.token;
 
@@ -25,9 +26,9 @@ const Navbar = () => {
 
       if(decodedToken.exp * 1000 < new Date().getTime()) logout()
     }
-
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     setUser(JSON.parse(localStorage.getItem( 'profile')))
-  }, [location, user?.token, logout])
+  }, [location, user.token, logout])
   console.log(user)  
   return (
     <div>
